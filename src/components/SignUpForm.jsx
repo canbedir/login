@@ -1,6 +1,14 @@
 import React from "react";
 import { useFormik } from "formik";
 import { SignUpSchemas } from "../schemas/SignUpSchemas";
+import {
+  Box,
+  Button,
+  Divider,
+  Input,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 const SignUpForm = () => {
   const submit = (values, action) => {
@@ -24,72 +32,73 @@ const SignUpForm = () => {
     "w-full border-b border-gray-500 text-white rounded-md pl-2 h-8 bg-neutral-900 outline-none";
 
   return (
-    <div className="flex h-screen justify-center items-center bg-neutral-900 flex-col">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-10 text-white w-3/12"
-      >
-        <div className="flex flex-col gap-2">
-          <label>Email</label>
-          <input
-            className={inputClassName}
-            type="text"
-            id="email"
-            placeholder="Email giriniz"
-            value={values.email}
-            onChange={handleChange}
-          />
-          {errors.email && <p className="error">{errors.email}</p>}
+    <div className="flex h-screen">
+      <div className="flex-1 flex items-center justify-center flex-col ">
+        <div className="w-full max-w-md flex gap-3 flex-col">
+          <h3 className="text-3xl">
+            hi<span className="text-orange-400">x</span>
+          </h3>
+          <p className="text-5xl">Sign in account</p>
+          <p className="text-gray-400/90 text-lg">
+            Welcome back, sign in to continue.
+          </p>
+          <div>
+            <Button
+              style={{
+                borderColor: "#9ca3af",
+                color: "white",
+                marginTop: "10px",
+              }}
+              variant="outlined"
+              className="w-3/4"
+            >
+              <p>
+                Continue with <span className="text-orange-400">Google</span>
+              </p>
+            </Button>
+          </div>
+          <div>
+            <Box className="flex items-center w-3/4">
+              <Divider className="flex-1" sx={{ borderColor: "gray" }} />
+              <Typography className="px-3 text-white">OR</Typography>
+              <Divider className="flex-1" sx={{ borderColor: "gray" }} />
+            </Box>
+          </div>
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <label>Email</label>
+                <input
+                  type="email"
+                  placeholder="Enter your email adress"
+                  className="w-3/4 h-10 p-2 bg-transparent border-gray-400 border rounded-md"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  className="w-3/4 h-10 p-2 bg-transparent border-gray-400 border rounded-md"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div>
+                <Button variant="contained" className="w-3/4" sx={{ backgroundColor: "orange" }}>
+                  Sign in account
+                </Button>
+              </div>
+              <p className="cursor-pointer">
+                Don&apos;t have an account? <span className="text-orange-400">Sign up</span>
+              </p>
+            </div>
+          </div>
         </div>
-
-        <div className="flex flex-col gap-2">
-          <label>Şifre</label>
-          <input
-            className={inputClassName}
-            type="password"
-            id="password"
-            placeholder="Şifre giriniz"
-            value={values.password}
-            onChange={handleChange}
-          />
-          {errors.password && <p className="error">{errors.password}</p>}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <label>Şifre Tekrar</label>
-          <input
-            className={inputClassName}
-            type="password"
-            id="confirmPassword"
-            placeholder="Şifre giriniz"
-            value={values.confirmPassword}
-            onChange={handleChange}
-          />
-          {errors.confirmPassword && (
-            <p className="error">{errors.confirmPassword}</p>
-          )}
-        </div>
-
-        <div className="flex flex-row gap-2">
-          <input
-            type="checkbox"
-            id="checkBox"
-            value={values.checkBox}
-            onChange={handleChange}
-          />
-          <label>Kullanıcı sözleşmesini onaylıyorum.</label>
-          {errors.checkBox && <p className="error">{errors.checkBox}</p>}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <button
-            type="submit"
-            className="w-full bg-white text-neutral-950 h-9 rounded-md hover:bg-slate-200 transition"
-          >
-            Kayıt ol
-          </button>
-        </div>
-      </form>
+      </div>
+      <div className="flex-1 flex items-center justify-center">
+        <img className="h-3/4 w-3/4" src="/resim.png" alt="" />
+      </div>
     </div>
   );
 };
