@@ -1,35 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { SignUpSchemas } from "../schemas/SignUpSchemas";
 import {
   Box,
   Button,
   Divider,
+  IconButton,
   Input,
+  InputAdornment,
+  styled,
+  Switch,
   TextField,
   Typography,
 } from "@mui/material";
+import {
+  Email,
+  Lock,
+  Password,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#9ca3af", // Varsayılan border rengi
+    },
+    "&:hover fieldset": {
+      borderColor: "#9ca3af", // Hover durumunda border rengi
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "white", // Odaklandığında border rengi
+    },
+  },
+  "& .MuiInputBase-input": {
+    color: "white", // İçindeki yazının rengi
+  },
+  "& .MuiInputLabel-root": {
+    color: "#9ca3af", // Label rengi
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "white", // Odaklanıldığında label rengi
+  },
+}));
 
 const SignUpForm = () => {
-  const submit = (values, action) => {
-    setTimeout(() => {
-      action.resetForm();
-    }, 2000);
+  const label = { inputProps: { "aria-label": "Switch demo" } };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
-  const { values, errors, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      checkBox: "",
-    },
-    validationSchema: SignUpSchemas,
-    onSubmit: submit,
-  });
-
-  const inputClassName =
-    "w-full border-b border-gray-500 text-white rounded-md pl-2 h-8 bg-neutral-900 outline-none";
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <div className="flex h-screen">
@@ -67,30 +93,74 @@ const SignUpForm = () => {
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <label>Email</label>
-                <input
+                <CustomTextField
+                  className="w-3/4"
+                  label="Email"
+                  size="medium"
                   type="email"
-                  placeholder="Enter your email adress"
-                  className="w-3/4 h-10 p-2 bg-transparent border-gray-400 border rounded-md"
+                  variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Email sx={{ color: "#9ca3af", fontSize: "20px" }} />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label>Password</label>
-                <input
-                  type="password"
-                  placeholder="Enter your password"
-                  className="w-3/4 h-10 p-2 bg-transparent border-gray-400 border rounded-md"
+                <CustomTextField
+                  className="w-3/4"
+                  label="Password"
+                  size="medium"
+                  type={showPassword ? "text" : "password"}
+                  variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Lock sx={{ color: "#9ca3af", fontSize: "20px" }} />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          sx={{ color: "#9ca3af" }}
+                          aria-label="şifreyi göster/gizle"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
+              </div>
+              <div className="flex justify-between items-center w-3/4">
+                <div>
+                  <Switch {...label} color="warning" />
+                  <label className="text-sm">Remember me</label>
+                </div>
+                <div>
+                  <p className="text-sm text-orange-400 cursor-pointer">
+                    Forgot password?
+                  </p>
+                </div>
               </div>
             </div>
             <div className="flex flex-col gap-4">
               <div>
-                <Button variant="contained" className="w-3/4" sx={{ backgroundColor: "orange" }}>
+                <Button
+                  variant="contained"
+                  className="w-3/4"
+                  sx={{ backgroundColor: "orange" }}
+                >
                   Sign in account
                 </Button>
               </div>
               <p className="cursor-pointer">
-                Don&apos;t have an account? <span className="text-orange-400">Sign up</span>
+                Don&apos;t have an account?{" "}
+                <span className="text-orange-400">Sign up</span>
               </p>
             </div>
           </div>
