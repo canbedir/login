@@ -74,8 +74,8 @@ const SignUpForm = () => {
   return (
     <div className={`flex h-screen ${isSignUp ? "sign-up" : "sign-in"}`}>
       <div
-        className={`flex-1 flex items-center justify-center flex-col form-container transition-transform duration-500 ${
-          isSignUp ? "translate-x-full" : ""
+        className={`flex-1 flex items-center justify-center m-5 flex-col form-container transition-transform duration-500 ${
+          isSignUp ? "md:translate-x-full sm:translate-x-0" : ""
         }`}
       >
         <div className="w-full max-w-md flex gap-3 flex-col">
@@ -277,11 +277,15 @@ const SignUpForm = () => {
         </div>
       </div>
       <div
-        className={`flex-1 flex items-center justify-center image-container transition-transform duration-500 ${
+        className={`hidden md:flex flex-1 items-center justify-center image-container transition-transform duration-500 ${
           isSignUp ? "-translate-x-full" : ""
         }`}
       >
-        <img className="h-3/4 w-3/4" src="/resim.png" alt="" />
+        <img
+          className="md:h-96 md:w-96 lg:h-3/4 lg:w-3/4"
+          src="/resim.png"
+          alt=""
+        />
       </div>
     </div>
   );
