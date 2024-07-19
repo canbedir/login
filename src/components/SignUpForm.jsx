@@ -78,7 +78,7 @@ const SignUpForm = () => {
           isSignUp ? "md:translate-x-full sm:translate-x-0" : ""
         }`}
       >
-        <div className="w-full max-w-md flex gap-3 flex-col">
+        <div className="w-full ml-12 sm:ml-0 max-w-md flex gap-3 flex-col">
           <h3 className="text-3xl">
             hi<span className="text-orange-400">x</span>
           </h3>
