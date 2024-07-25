@@ -237,17 +237,21 @@ const SignUpForm = () => {
                   />
                 )}
               </div>
-              <div className="flex justify-between items-center w-3/4">
-                <div>
-                  <Switch {...label} color="warning" />
-                  <label className="text-sm">Remember me</label>
+              {isSignUp ? (
+                ""
+              ) : (
+                <div className="flex justify-between items-center w-3/4">
+                  <div>
+                    <Switch {...label} color="warning" />
+                    <label className="text-sm">Remember me</label>
+                  </div>
+                  <div>
+                    <p className="text-sm text-orange-400 cursor-pointer">
+                      Forgot password?
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-orange-400 cursor-pointer">
-                    Forgot password?
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
             <div className="flex flex-col gap-4">
               <div>
